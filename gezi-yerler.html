@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title id="siteBasligi">Velikiy Novgorod</title>
+  <script>
+    async function dilYukle(dil) {
+      const response = await fetch(`dil/${dil}.json`);
+      const veri = await response.json();
+
+      document.getElementById("siteBasligi").innerText = veri.siteBasligi;
+      document.getElementById("baslik").innerText = veri.gezilecekYerler;
+      document.getElementById("yer1Baslik").innerText = veri.yer1Baslik;
+      document.getElementById("yer1Aciklama").innerText = veri.yer1Aciklama;
+      document.getElementById("yer2Baslik").innerText = veri.yer2Baslik;
+      document.getElementById("yer2Aciklama").innerText = veri.yer2Aciklama;
+    }
+  </script>
+  <link rel="stylesheet" href="stil.css">
+</head>
+<body onload="dilYukle('tr')">
+  <nav>
+    <label>Dil Seçin:</label>
+    <select onchange="dilYukle(this.value)">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+    </select>
+  </nav>
+
+  <h1 id="baslik">...</h1>
+  <section>
+    <h2 id="yer1Baslik">...</h2>
+    <p id="yer1Aciklama">...</p>
+
+    <h2 id="yer2Baslik">...</h2>
+    <p id="yer2Aciklama">...</p>
+  </section>
+</body>
+</html>
