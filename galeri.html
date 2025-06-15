@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title id="siteBasligi">Velikiy Novgorod</title>
+  <script>
+    async function dilYukle(dil) {
+      const response = await fetch(`dil/${dil}.json`);
+      const veri = await response.json();
+
+      document.getElementById("siteBasligi").innerText = veri.siteBasligi;
+      document.getElementById("baslik").innerText = veri.galeri;
+      document.getElementById("gorsel1Aciklama").innerText = veri.gorsel1Aciklama;
+      document.getElementById("gorsel2Aciklama").innerText = veri.gorsel2Aciklama;
+    }
+  </script>
+  <link rel="stylesheet" href="stil.css">
+</head>
+<body onload="dilYukle('tr')">
+  <nav>
+    <label>Dil Seçin:</label>
+    <select onchange="dilYukle(this.value)">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+    </select>
+  </nav>
+
+  <h1 id="baslik">...</h1>
+
+  <section>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Novgorod_Kremlin.jpg" alt="Kremlin" width="300">
+    <p id="gorsel1Aciklama">...</p>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Saint_Sophia_Cathedral%2C_Novgorod.jpg" alt="Sofya Katedrali" width="300">
+    <p id="gorsel2Aciklama">...</p>
+  </section>
+</body>
+</html>
