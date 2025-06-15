@@ -2,19 +2,39 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>İletişim</title>
+  <title id="siteBasligi">Velikiy Novgorod</title>
+  <script>
+    async function dilYukle(dil) {
+      const response = await fetch(`dil/${dil}.json`);
+      const veri = await response.json();
+
+      document.getElementById("siteBasligi").innerText = veri.siteBasligi;
+      document.getElementById("baslik").innerText = veri.iletisim;
+      document.getElementById("metin").innerText = veri.iletisimMetni;
+      document.getElementById("epostaEtiketi").innerText = veri.eposta;
+      document.getElementById("instagramEtiketi").innerText = veri.instagram;
+      document.getElementById("xEtiketi").innerText = veri.x;
+    }
+  </script>
   <link rel="stylesheet" href="stil.css">
 </head>
-<body>
-  <h1>İletişim</h1>
+<body onload="dilYukle('tr')">
+  <nav>
+    <label>Dil Seçin:</label>
+    <select onchange="dilYukle(this.value)">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+    </select>
+  </nav>
 
+  <h1 id="baslik">...</h1>
   <section>
-    <p>Velikiy Novgorod hakkında bilgi almak ya da öneride bulunmak istersen bizimle iletişime geçebilirsin.</p>
-
+    <p id="metin">...</p>
     <ul>
-      <li>E-posta: <a href="mailto:bilgi@novgorodtanitim.com">bilgi@novgorodtanitim.com</a></li>
-      <li>Instagram: <a href="https://instagram.com/novgorodtanitim" target="_blank">@novgorodtanitim</a></li>
-      <li>X (Twitter): <a href="https://x.com/novgorodtanitim" target="_blank">@novgorodtanitim</a></li>
+      <li><strong id="epostaEtiketi"></strong>: <a href="mailto:bilgi@novgorodtanitim.com">bilgi@novgorodtanitim.com</a></li>
+      <li><strong id="instagramEtiketi"></strong>: <a href="https://instagram.com/novgorodtanitim" target="_blank">@novgorodtanitim</a></li>
+      <li><strong id="xEtiketi"></strong>: <a href="https://x.com/novgorodtanitim" target="_blank">@novgorodtanitim</a></li>
     </ul>
   </section>
 </body>
