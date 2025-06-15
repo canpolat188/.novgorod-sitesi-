@@ -2,40 +2,20 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title id="siteBasligi">Velikiy Novgorod</title>
+  <title>Hakkında - SE SLANIE</title>
   <link rel="stylesheet" href="style.css">
-  <script>
-    async function loadLanguage(lang) {
-      const res = await fetch(`dil/${lang}.json`);
-      const data = await res.json();
-      document.getElementById("siteBasligi").innerText = data.siteBasligi;
-      document.getElementById("title").innerText = data.beniokuBaslik;
-      document.getElementById("text").innerText = data.beniokuMetin;
-    }
-  </script>
 </head>
-<body onload="loadLanguage('tr')">
+<body>
+  <h1>Hakkımızda</h1>
+  <p>
+    SE SLANIE, Velikiy Novgorod'un kültürel mirasını dijital ortamda tanıtmayı amaçlayan bir platformdur.
+    Tarihi yapılar, halk sanatı, mitolojiler ve yerel anlatılar bu site aracılığıyla ziyaretçilere sunulmaktadır.
+  </p>
 
   <nav>
-    <label>Select Language:</label>
-    <select onchange="loadLanguage(this.value)">
-      <option value="tr">Türkçe</option>
-      <option value="en">English</option>
-      <option value="ru">Русский</option>
-    </select>
+    <a href="index.html">Ana Sayfa</a> |
+    <a href="gallery.html">Galeri</a> |
+    <a href="about.html">Hakkında</a>
   </nav>
-
-  <div id="menuContainer"></div>
-  <script>
-    fetch("menu.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("menuContainer").innerHTML = data;
-      });
-  </script>
-
-  <h1 id="title">...</h1>
-  <p id="text">...</p>
-
 </body>
 </html>
