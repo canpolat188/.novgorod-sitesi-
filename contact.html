@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title id="siteBasligi">Velikiy Novgorod</title>
+  <script>
+    async function loadLanguage(lang) {
+      const res = await fetch(`dil/${lang}.json`);
+      const data = await res.json();
+      document.getElementById("siteBasligi").innerText = data.siteBasligi;
+      document.getElementById("title").innerText = data.iletisimBaslik;
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body onload="loadLanguage('tr')">
+
+  <nav>
+    <label>Select Language:</label>
+    <select onchange="loadLanguage(this.value)">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+    </select>
+  </nav>
+
+  <div id="menuContainer"></div>
+  <script>
+    fetch("menu.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("menuContainer").innerHTML = data;
+      });
+  </script>
+
+  <h1 id="title">...</h1>
+  <p>
+    📧 E-posta: <a href="mailto:can@example.com">can@example.com</a><br>
+    💬 WhatsApp: <a href="https://wa.me/905555555555" target="_blank">+90 555 555 55 55</a>
+  </p>
+
+</body>
+</html>
